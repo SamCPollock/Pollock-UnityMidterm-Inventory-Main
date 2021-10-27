@@ -70,17 +70,16 @@ public class ItemSlot : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log("-----------Item dropped in me.-----------");
         if (eventData.pointerDrag != null && !isFull)
         {
             isFull = true;
-            Debug.Log("IS FULL SET TO: " + isFull);
             eventData.pointerDrag.GetComponent<ItemBehaviour>().droppedOnSlot = true;
             eventData.pointerDrag.GetComponent<RectTransform>().position = new Vector3 (gameObject.GetComponent<RectTransform>().position.x, gameObject.GetComponent<RectTransform>().position.y, eventData.pointerDrag.GetComponent<RectTransform>().position.z);
-            if (eventData.pointerDrag.gameObject.transform.parent.GetComponent<ItemSlot>() != null)
-                eventData.pointerDrag.gameObject.transform.parent.GetComponent<ItemSlot>().isFull = false;
-            //Debug.Log("Setting the isFull property of " + eventData.pointerDrag.gameObject.transform.parent + "to False");
-            eventData.pointerDrag.gameObject.transform.SetParent(gameObject.transform);
+            //if (eventData.pointerDrag.gameObject.transform.parent.GetComponent<ItemSlot>() != null)
+            //{
+                gameObject.GetComponent<ItemSlot>().isFull = false;
+            //}
+            eventData.pointerDrag.gameObject.transform.SetParent(gameObject.transform.parent.parent);
         }
     }
 }

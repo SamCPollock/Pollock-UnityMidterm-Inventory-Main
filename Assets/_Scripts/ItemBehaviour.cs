@@ -14,6 +14,12 @@ public class ItemBehaviour : MonoBehaviour, IPointerDownHandler, IDragHandler, I
 
     public bool droppedOnSlot;
 
+    [SerializeField]
+    private Item itemScriptableObject;
+
+
+    private GameObject slotsOccupied;
+
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -21,6 +27,8 @@ public class ItemBehaviour : MonoBehaviour, IPointerDownHandler, IDragHandler, I
 
     void Start()
     {
+        //transform.GetChild(1).GetComponent<Image>().sprite = itemScriptableObject.icon;
+        gameObject.GetComponent<Image>().sprite = itemScriptableObject.icon;
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         canvasGroup = gameObject.GetComponent<CanvasGroup>();
     }

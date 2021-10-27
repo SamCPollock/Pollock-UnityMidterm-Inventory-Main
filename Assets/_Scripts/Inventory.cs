@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField]
-    GameObject containerCanvas;
+    //[SerializeField]
+    //GameObject containerCanvas;
 
     [SerializeField]
     ItemTable itemTable;
@@ -15,28 +15,28 @@ public class Inventory : MonoBehaviour
         itemTable.AssignItemIDs();
     }
 
-    public void OpenContainer()
+    public void OpenContainer(GameObject containerToOpen)
     {
-        containerCanvas.SetActive(true);
+        containerToOpen.SetActive(true);
     }
 
-    public void CloseContainer()
+    public void CloseContainer(GameObject containerToClose)
     {
-        containerCanvas.SetActive(false);
+        containerToClose.SetActive(false);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
        // if (collision.gameObject.tag == "Container")
         {
-            OpenContainer();
+            OpenContainer(collision.gameObject.transform.parent.GetComponent<ContainerBehaviour>().containerCanvas);
         }
     }
     void OnTriggerExit2D(Collider2D collision)
     {
       //  if (collision.gameObject.tag == "Container")
         {
-            CloseContainer();
+            CloseContainer(collision.gameObject.transform.parent.GetComponent<ContainerBehaviour>().containerCanvas);
         }
     }
 }
