@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    //[SerializeField]
-    //GameObject containerCanvas;
 
     [SerializeField]
     ItemTable itemTable;
@@ -27,14 +25,12 @@ public class Inventory : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-       // if (collision.gameObject.tag == "Container")
         {
             OpenContainer(collision.gameObject.transform.parent.GetComponent<ContainerBehaviour>().containerCanvas);
         }
     }
     void OnTriggerExit2D(Collider2D collision)
     {
-      //  if (collision.gameObject.tag == "Container")
         {
             CloseContainer(collision.gameObject.transform.parent.GetComponent<ContainerBehaviour>().containerCanvas);
         }

@@ -13,7 +13,6 @@ public class ItemSlotGridDimensioner : MonoBehaviour
     Vector2Int GridDimensions = new Vector2Int(6, 6);
 
 
-   // public GameObject[] slotsArray;
 
     public List<GameObject> slotsList = new List<GameObject>();
 
@@ -26,7 +25,6 @@ public class ItemSlotGridDimensioner : MonoBehaviour
         for (int i = 0; i < numCells; i++)
         {
             GameObject newObject = Instantiate(itemSlotPrefab, this.transform);
-            //slotsArray[i] = newObject;
             slotsList.Add(newObject);
         }
 
@@ -93,16 +91,5 @@ public class ItemSlotGridDimensioner : MonoBehaviour
         }
 
 
-        /*pseudocode for neighbours:
-         * if index % GridDimensions.y = 0 then no right
-         * if index -1 % GridDimensions.y = 0 then no left 
-         * above = index - GridDimensions.y
-         * below = index + GridDimension.y
-        */
-
-        //while (transform.childCount < numCells)
-        //{
-        //    GameObject newObject = Instantiate(itemSlotPrefab, this.transform);
-        //}
     }
 }
