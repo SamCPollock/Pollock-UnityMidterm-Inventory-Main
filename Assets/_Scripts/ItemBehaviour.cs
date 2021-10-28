@@ -14,6 +14,8 @@ public class ItemBehaviour : MonoBehaviour, IPointerDownHandler, IDragHandler, I
 
     public bool droppedOnSlot;
 
+    public Vector2 itemDimensions;
+
     [SerializeField]
     private Item itemScriptableObject;
 

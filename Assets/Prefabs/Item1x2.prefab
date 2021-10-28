@@ -161,7 +161,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5992311126861957564}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -225,6 +225,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   droppedOnSlot: 0
+  itemDimensions: {x: 1, y: 2}
+  itemScriptableObject: {fileID: 11400000, guid: 134b977f822d05e4ea7e2e7dae0d5d8d, type: 2}
 --- !u!225 &5992311126861957565
 CanvasGroup:
   m_ObjectHideFlags: 0
