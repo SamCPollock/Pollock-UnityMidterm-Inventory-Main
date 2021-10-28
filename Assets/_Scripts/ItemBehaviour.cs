@@ -20,7 +20,7 @@ public class ItemBehaviour : MonoBehaviour, IPointerDownHandler, IDragHandler, I
     private Item itemScriptableObject;
 
 
-    private GameObject slotsOccupied;
+    public ItemSlot topLeftSlotOccupied;
 
     void Awake()
     {
@@ -47,6 +47,10 @@ public class ItemBehaviour : MonoBehaviour, IPointerDownHandler, IDragHandler, I
       //  Debug.Log("Begin Drag...");
         canvasGroup.blocksRaycasts = false;
         eventData.pointerDrag.GetComponent<ItemBehaviour>().droppedOnSlot = false;
+        if (topLeftSlotOccupied != null)
+        {
+            topLeftSlotOccupied.ItemRemoved(eventData);
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -64,6 +68,7 @@ public class ItemBehaviour : MonoBehaviour, IPointerDownHandler, IDragHandler, I
         {
             transform.position = originalPos;
         }
+
 
     }
 

@@ -426,9 +426,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerCanvas: {fileID: 2076911750}
-  containerCanvasPrefab: {fileID: 7392456801915817851, guid: ba4807d9d64e1f44d81771d00ae6fbd0, type: 3}
-  containerUIPrefab: {fileID: 0}
-  canvasInScene: {fileID: 0}
 --- !u!1001 &700100932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -653,9 +650,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerCanvas: {fileID: 337873823}
-  containerCanvasPrefab: {fileID: 7392456801915817851, guid: ba4807d9d64e1f44d81771d00ae6fbd0, type: 3}
-  containerUIPrefab: {fileID: 0}
-  canvasInScene: {fileID: 0}
 --- !u!1 &1112465170
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,9 +734,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   containerCanvas: {fileID: 2002559349}
-  containerCanvasPrefab: {fileID: 7392456801915817851, guid: ba4807d9d64e1f44d81771d00ae6fbd0, type: 3}
-  containerUIPrefab: {fileID: 0}
-  canvasInScene: {fileID: 0}
 --- !u!1001 &1314151768
 PrefabInstance:
   m_ObjectHideFlags: 0

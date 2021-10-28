@@ -89,4 +89,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemInSlot: {fileID: 0}
+  isFull: 0
   itemCount: 0
+  upNeighbour: {fileID: 0}
+  downNeighbour: {fileID: 0}
+  rightNeighbour: {fileID: 0}
+  leftNeighbour: {fileID: 0}

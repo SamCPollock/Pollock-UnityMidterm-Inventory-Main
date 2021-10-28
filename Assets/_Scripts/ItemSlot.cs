@@ -75,26 +75,45 @@ public class ItemSlot : MonoBehaviour, IDropHandler
         }
     }
 
+
     public void OnDrop(PointerEventData eventData)
     {
         if (eventData.pointerDrag != null) // see if an item is dragged
         {
             bool canDrop = true;
+            ItemSlot itemSlotBeingLookedAt = gameObject.GetComponent<ItemSlot>(); 
 
             if (!isFull)                   // see if the mouseOver slot is full
             {
                 for (int i = 1; i < eventData.pointerDrag.GetComponent<ItemBehaviour>().itemDimensions.x; i++) // iterate through x Size
                 {
-                    if (rightNeighbour.GetComponent<ItemSlot>().isFull || rightNeighbour == null )
+                    if (itemSlotBeingLookedAt.rightNeighbour == null)
+                    {
+                        canDrop = false;
+                        return;
+                    }
+                    
+                    itemSlotBeingLookedAt = itemSlotBeingLookedAt.rightNeighbour.GetComponent<ItemSlot>();
+                    if (itemSlotBeingLookedAt.isFull || itemSlotBeingLookedAt == null)
                     {
                         // don't drop
                         canDrop = false;
                         return;
-
                     }
+                    
+                    itemSlotBeingLookedAt = gameObject.GetComponent<ItemSlot>();    // Return looker to original position
+
+
                     for (int j = 1; j < eventData.pointerDrag.GetComponent<ItemBehaviour>().itemDimensions.y; j++) // iterate through y size for additional width
                     {
-                        if (rightNeighbour.GetComponent<ItemSlot>().downNeighbour.GetComponent<ItemSlot>().isFull)
+                        if (itemSlotBeingLookedAt.downNeighbour == null)
+                        {
+                            canDrop = false;
+                            return;
+                        }
+                        itemSlotBeingLookedAt = itemSlotBeingLookedAt.downNeighbour.GetComponent<ItemSlot>();
+
+                        if (itemSlotBeingLookedAt.isFull)
                         {
                             // don't drop
                             canDrop = false;
@@ -104,12 +123,20 @@ public class ItemSlot : MonoBehaviour, IDropHandler
                 }
                 for (int i = 1; i < eventData.pointerDrag.GetComponent<ItemBehaviour>().itemDimensions.y; i++) // iterate through y size
                 {
-                    if (downNeighbour.GetComponent<ItemSlot>().isFull)
+                    if (itemSlotBeingLookedAt.downNeighbour== null)
+                    {
+                        canDrop = false;
+                        return;
+                    }
+
+                    itemSlotBeingLookedAt = itemSlotBeingLookedAt.downNeighbour.GetComponent<ItemSlot>();
+                    if (itemSlotBeingLookedAt.isFull)
                     {
                         canDrop = false;
                         return;
                     }
                 }
+                itemSlotBeingLookedAt = gameObject.GetComponent<ItemSlot>();    // Return looker to original position
 
 
                 if (canDrop)
@@ -133,6 +160,7 @@ public class ItemSlot : MonoBehaviour, IDropHandler
 
 
                     eventData.pointerDrag.GetComponent<ItemBehaviour>().droppedOnSlot = true;
+                    eventData.pointerDrag.GetComponent<ItemBehaviour>().topLeftSlotOccupied = gameObject.GetComponent<ItemSlot>();
                     eventData.pointerDrag.GetComponent<RectTransform>().position = new Vector3(gameObject.GetComponent<RectTransform>().position.x, gameObject.GetComponent<RectTransform>().position.y, eventData.pointerDrag.GetComponent<RectTransform>().position.z);
                     //if (eventData.pointerDrag.gameObject.transform.parent.GetComponent<ItemSlot>() != null)
                     //{
@@ -147,4 +175,40 @@ public class ItemSlot : MonoBehaviour, IDropHandler
             }
         }
     }
+
+    public void ItemRemoved(PointerEventData eventData)
+    {
+        isFull = false;
+
+        for (int i = 1; i < eventData.pointerDrag.GetComponent<ItemBehaviour>().itemDimensions.x; i++) // iterate through x Size
+        {
+            rightNeighbour.GetComponent<ItemSlot>().isFull = false;
+
+            for (int j = 1; j < eventData.pointerDrag.GetComponent<ItemBehaviour>().itemDimensions.y; j++) // iterate through y size for additional width
+            {
+                rightNeighbour.GetComponent<ItemSlot>().downNeighbour.GetComponent<ItemSlot>().isFull = false;
+            }
+        }
+        for (int i = 1; i < eventData.pointerDrag.GetComponent<ItemBehaviour>().itemDimensions.y; i++) // iterate through y size
+        {
+            downNeighbour.GetComponent<ItemSlot>().isFull = false;
+        }
+    }
+
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    Debug.Log("TRIGGER ENTERED");
+    //    if (collision.gameObject.GetComponent<ItemBehaviour>() != false)
+    //    {
+    //        isFull = true;
+    //    }
+    //}
+
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.GetComponent<ItemBehaviour>() != false)
+    //    {
+    //        isFull = false;
+    //    }
+    //}
 }
