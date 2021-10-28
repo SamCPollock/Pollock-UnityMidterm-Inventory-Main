@@ -176,22 +176,22 @@ public class ItemSlot : MonoBehaviour, IDropHandler
         }
     }
 
-    public void ItemRemoved(PointerEventData eventData)
+    public void ItemRemoved(PointerEventData eventData, bool filled)
     {
-        isFull = false;
+        isFull = filled;
 
         for (int i = 1; i < eventData.pointerDrag.GetComponent<ItemBehaviour>().itemDimensions.x; i++) // iterate through x Size
         {
-            rightNeighbour.GetComponent<ItemSlot>().isFull = false;
+            rightNeighbour.GetComponent<ItemSlot>().isFull = filled;
 
             for (int j = 1; j < eventData.pointerDrag.GetComponent<ItemBehaviour>().itemDimensions.y; j++) // iterate through y size for additional width
             {
-                rightNeighbour.GetComponent<ItemSlot>().downNeighbour.GetComponent<ItemSlot>().isFull = false;
+                rightNeighbour.GetComponent<ItemSlot>().downNeighbour.GetComponent<ItemSlot>().isFull = filled;
             }
         }
         for (int i = 1; i < eventData.pointerDrag.GetComponent<ItemBehaviour>().itemDimensions.y; i++) // iterate through y size
         {
-            downNeighbour.GetComponent<ItemSlot>().isFull = false;
+            downNeighbour.GetComponent<ItemSlot>().isFull = filled;
         }
     }
 

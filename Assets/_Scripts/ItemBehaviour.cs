@@ -49,7 +49,7 @@ public class ItemBehaviour : MonoBehaviour, IPointerDownHandler, IDragHandler, I
         eventData.pointerDrag.GetComponent<ItemBehaviour>().droppedOnSlot = false;
         if (topLeftSlotOccupied != null)
         {
-            topLeftSlotOccupied.ItemRemoved(eventData);
+            topLeftSlotOccupied.ItemRemoved(eventData, false);
         }
     }
 
@@ -67,6 +67,11 @@ public class ItemBehaviour : MonoBehaviour, IPointerDownHandler, IDragHandler, I
         if (!droppedOnSlot)
         {
             transform.position = originalPos;
+            if (topLeftSlotOccupied != null)
+            {
+                Debug.Log("FILLIND UP THE SLOTS");
+                topLeftSlotOccupied.ItemRemoved(eventData, true);
+            }
         }
 
 
