@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 338f75394b047f94c8b1d3e0ecc35512, type: 3}
   m_Name: SquarePotion
   m_EditorClassIdentifier: 
-  name: item
-  description: this is an item
-  icon: {fileID: 0}
+  name: SquarePotion
+  description: This is the premium brand!
+  icon: {fileID: 1161305683549977196, guid: 0657a0b2892d4cf49b09e2fec63a8531, type: 3}
   isConsumable: 1
